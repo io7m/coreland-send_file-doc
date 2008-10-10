@@ -6,7 +6,7 @@ pdf: release/$(name).pdf
 ps: release/$(name).ps
 dvi: release/$(name).dvi
 html-split: release/0.html
-html-single: release/single.html
+html-single: release/$(name).html
 css: release/main.css
 plain: release/$(name).txt
 nroff: release/$(name).nrf
@@ -53,9 +53,9 @@ build/$(name).ps: build/$(name).pdf
 release/$(name).ps: build/$(name).ps
 	cp build/$(name).ps release/$(name).ps
 
-release/single.html: src/main.ud $(generated_sources)
+release/$(name).html: src/main.ud $(generated_sources)
 	(cd src && udoc-render -s 0 -r xhtml main.ud ../build)
-	cp build/0.html release/single.html
+	cp build/0.html release/$(name).html
 
 release/0.html: src/main.ud $(generated_sources)
 	(cd src && udoc-render -s 2 -r xhtml main.ud ../build)

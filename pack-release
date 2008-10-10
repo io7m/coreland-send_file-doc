@@ -17,6 +17,11 @@ copy()
   cp "$1" "$2" || die "could not copy $1"
 }
 
+now()
+{
+  date -u "+%Y-%m-%d %H:%M:%S %z"
+}
+
 release=`cat src/m_docid.txt` ||
   die "could not read document id"
 
@@ -43,6 +48,12 @@ mkdir "${release}/meta" || die "could not create ${release}/meta"
 copy src/m_title.txt "${release}/meta/title"
 copy src/m_docid.txt "${release}/meta/id"
 copy src/m_pkg.txt   "${release}/meta/package"
+now                > "${release}/meta/pubdate" || die "could not get pubdate"
+
+info "symlinking index"
+
+(cd "${release}" && ln -s "0.html" "index.html") ||
+  die "could not symlink 0.html index.html"
 
 info "packing archive ${release}.tar.gz"
 
