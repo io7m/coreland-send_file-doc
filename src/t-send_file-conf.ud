@@ -1,0 +1,54 @@
+(section
+  (ref "send_file-conf")
+  (title "send_file-conf")
+
+  (section
+    (title "synopsis")
+    (para-verbatim
+"send_file-conf: [help] ops ..."))
+
+  (section
+    (title "description")
+    (para "The " (item command "send_file-conf") " program prints information
+     needed to compile and/or link against the library itself."))
+
+  (section
+    (title "options")
+    (para "The following options are available:")
+    (para
+      (table options
+        (t-row
+          (item "help")
+          (item "Print help message."))
+        (t-row
+          (item "compile")
+          (item "Modify output to be used as options for the compiler (see "
+            (link "conf_example" "example") ")."))
+        (t-row
+          (item "incdir")
+          (item "Print location of C header files."))
+        (t-row
+          (item "cflags")
+          (item "Print C compiler flags necessary for compilation (possibly none)."))
+        (t-row
+          (item "dlibdir")
+          (item "Print location of dynamic libraries."))
+        (t-row
+          (item "slibdir")
+          (item "Print location of static libraries."))
+        (t-row
+          (item "ldflags")
+          (item "Print C linker flags necessary for compilation"))
+        (t-row
+          (item "version")
+          (item "Print installed version of library."))
+        (t-row
+          (item "newline")
+          (item "Append newline to output.")))))
+
+  (section
+    (title "example")
+    (ref "conf_example")
+    (include "t-send_file_exp.ud"))
+
+)

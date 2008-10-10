@@ -1,0 +1,23 @@
+(section
+  (ref "send_file_fd")
+  (title "send_file_fd")
+  (para funtion_desc "Send a file to a socket, from file descriptor")
+  (subsection
+    (title "synopsis")
+    (para-verbatim function_synopsis
+"#include <send_file/send_file.h>
+
+int send_file_fd (int sock, int fd, uint64 offset, uint64 size, uint64 *sent);"))
+  (subsection
+    (title "description")
+    (para
+      "The " (item function "send_file_fd()") " function sends " (item
+      function_param "size") " bytes from the file descriptor referenced by "
+      (item function_param "fd") ", starting at " (item function_param
+      "offset") " to the open socket " (item function_param "sock") ".
+      The number of bytes sent are returned in " (item function_param
+      "sent") ".")
+    (para
+      "The function returns " (item constant "0") " on success and "
+      (item constant "-1") " on failure, setting " (item variable
+      "errno") " appropriately.")))

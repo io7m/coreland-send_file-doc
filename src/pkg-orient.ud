@@ -1,0 +1,20 @@
+(section
+  (title "orientation")
+
+  (section
+    (title "overview")
+
+    (para (item package "send_file") " is a simple abstraction over the
+     various implementations of the " (item function "sendfile()") " system
+     call."))
+
+  (section
+    (title "implementation")
+
+    (para "The package is around 100 lines of C, only around a fifth of
+     which will actually be compiled on any given system. The only way it
+     could be smaller was if system designers settled on ONE interface for
+     " (item function "sendfile()") " and the entire package became obsolete
+     and vanished " (footnote (item "This never happens. Sorry.")) "."))
+
+) ; end of section
