@@ -9,7 +9,7 @@
 (para (include "m_pubdate.ud"))
 
 (para abstract
-  "documentation for " (item package "send_file 0.1"))
+  "documentation for " (include "m_pkg.ud"))
 
 (contents)
 

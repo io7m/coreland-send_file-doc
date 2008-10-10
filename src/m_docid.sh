@@ -1,2 +1,2 @@
 #!/bin/sh
-printf '(item docid "%s")\n' `./docid.sh`
+echo | tai64 | sed 's/@/SFD/' | sed 's/ *//g'

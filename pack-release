@@ -1,0 +1,58 @@
+#!/bin/sh
+
+info()
+{
+  echo "info: $1" 1>&2
+}
+
+die()
+{
+  echo "fatal: $1" 1>&2
+  exit 112
+}
+
+copy()
+{
+  info "copy $1 $2"
+  cp "$1" "$2" || die "could not copy $1"
+}
+
+release=`cat src/m_docid.txt` ||
+  die "could not read document id"
+
+info "creating ${release}"
+
+mkdir "${release}" ||
+  die "could not create ${release}"
+
+info "fixing permissions"
+
+for file in release/*
+do
+  chmod 644 "$file"
+done
+
+info "copying release files"
+
+rsync -avz --delete release/ "${release}" ||
+  die "could not copy release files"
+
+info "making release meta"
+
+mkdir "${release}/meta" || die "could not create ${release}/meta"
+copy src/m_title.txt "${release}/meta/title"
+copy src/m_docid.txt "${release}/meta/id"
+copy src/m_pkg.txt   "${release}/meta/package"
+
+info "packing archive ${release}.tar.gz"
+
+tar cf - "${release}" | gzip -9 > "${release}.tar.gz" ||
+  die "could not create archive"
+
+info "creating checksums"
+
+md5 "${release}.tar.gz" > "${release}.tar.gz.md5" ||
+  die "could not create md5 checksum"
+
+sha256 "${release}.tar.gz" > "${release}.tar.gz.sha256" ||
+  die "could not create sha256 checksum"
